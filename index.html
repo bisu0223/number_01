@@ -1,41 +1,18 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html lang="ko">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/ar.js"></script>
   </head>
-  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=960 height=600 tabindex="-1" style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/wep.loader.js"></script>
-    <script>
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false;">
 
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";
+      <a-marker preset='custom' type='pattern' url='my-marker.patt'>
+        <a-gltf-model src="my-model.glb" scale="0.5 0.5 0.5" position="0 0 0" rotation="-90 0 0"></a-gltf-model>
+      </a-marker>
 
-        document.body.style.textAlign = "left";
-      }
-
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        arguments: [],
-        dataUrl: "Build/wep.data.unityweb",
-        frameworkUrl: "Build/wep.framework.js.unityweb",
-        codeUrl: "Build/wep.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "test",
-        productVersion: "0.1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
+      <a-entity camera></a-entity>
+    </a-scene>
   </body>
 </html>
