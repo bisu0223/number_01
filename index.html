@@ -14,12 +14,15 @@
   
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     </head>
-  </head>
+  
   <body style="margin: 0; overflow: hidden;">
     
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
       
       <a-marker type="pattern" url="my-marker.patt">
+          <a-entity gltf-model="url(my-model.glb)" 
+              rotation="0 180 0" 
+              animation-mixer="clip: *; loop: repeat;">  
         
         <a-entity 
             gltf-model="url(my-model.glb)" 
@@ -35,6 +38,7 @@
     </a-scene>
   </body>
 </html>
+
 
 
 
